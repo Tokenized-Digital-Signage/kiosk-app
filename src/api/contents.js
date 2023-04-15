@@ -1,5 +1,7 @@
-const contractAddress = "0xD3d1899FA5b97364aF8C3D14555d6B117332150D";
+import Web3 from "web3";
 import AdsSpotToken from "../contracts/AdsSpotToken.json";
+const contractAddress = "0x16304acc2650c8e92091ab220a9cbd8561ce3516";
+const web3 = new Web3(Web3.givenProvider);
 
 function generateRandomString(length) {
   let result = '';
@@ -17,11 +19,11 @@ const contentsApi = {
     const params = url.searchParams;
     const adsSpotId = params.get('id')
 
-    const abi = AdsSpotToken.abi;
-    const contract = new web3.eth.Contract(abi, contractAddress);
+    console.log(AdsSpotToken)
+    const contract = new web3.eth.Contract(AdsSpotToken, contractAddress);
 
     const getTokenURI = async () => {
-      return await contract.methods.tokenURI().call();
+      return await contract.methods.tokenURI(adsSpotId).call();
     };
     const tokenURI = await getTokenURI()
     const resuponse = await fetch(tokenURI);
