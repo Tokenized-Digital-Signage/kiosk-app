@@ -1,6 +1,6 @@
 import Web3 from "web3";
 import AdsSpotToken from "../contracts/AdsSpotToken.json";
-const contractAddress = "0x16304acc2650c8e92091ab220a9cbd8561ce3516";
+const contractAddress = "0x06C96F03934c7799FEae82f62F887BdC9dD5f1fE";
 const web3 = new Web3(Web3.givenProvider);
 
 function generateRandomString(length) {
