@@ -19,13 +19,12 @@ const contentsApi = {
     const params = url.searchParams;
     const adsSpotId = params.get('id')
 
-    console.log(AdsSpotToken)
     const contract = new web3.eth.Contract(AdsSpotToken, contractAddress);
 
-    const getTokenURI = async () => {
-      return await contract.methods.tokenURI(adsSpotId).call();
+    const getContentMetadata = async () => {
+      return await contract.methods.getContentMetadata(adsSpotId).call();
     };
-    const tokenURI = await getTokenURI()
+    const tokenURI = await getContentMetadata()
     const resuponse = await fetch(tokenURI);
     const metadata = await resuponse.json();
     return [{'downloadUrl': metadata.image, etag: generateRandomString(16)}]
